@@ -3,10 +3,30 @@ import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 
-const QUESTIONS = Array.from({ length: 20 }, (_, i) => ({
-  id: i + 1,
-  text: `Placeholder text for question ${i + 1}`,
-}))
+const DEFAULT_CHOICES = ['1', '2', '3', '4', '5']
+
+const QUESTIONS = [
+  { id: 1, text: 'Placeholder question 1', choices: ['Very dissatisfied', 'Dissatisfied', 'Neutral', 'Satisfied', 'Very satisfied'] },
+  { id: 2, text: 'Placeholder question 2', choices: ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'] },
+  { id: 3, text: 'Placeholder question 3' },
+  { id: 4, text: 'Placeholder question 4' },
+  { id: 5, text: 'Placeholder question 5' },
+  { id: 6, text: 'Placeholder question 6' },
+  { id: 7, text: 'Placeholder question 7' },
+  { id: 8, text: 'Placeholder question 8' },
+  { id: 9, text: 'Placeholder question 9', choices: ['Poor', 'Fair', 'Good', 'Very good', 'Excellent'] },
+  { id: 10, text: 'Placeholder question 10' },
+  { id: 11, text: 'Placeholder question 11' },
+  { id: 12, text: 'Placeholder question 12' },
+  { id: 13, text: 'Placeholder question 13' },
+  { id: 14, text: 'Placeholder question 14' },
+  { id: 15, text: 'Placeholder question 15', choices: ['Very unlikely', 'Unlikely', 'Neutral', 'Likely', 'Very likely'] },
+  { id: 16, text: 'Placeholder question 16' },
+  { id: 17, text: 'Placeholder question 17' },
+  { id: 18, text: 'Placeholder question 18' },
+  { id: 19, text: 'Placeholder question 19' },
+  { id: 20, text: 'Placeholder question 20' },
+]
 
 export default function Home() {
   const formRef = useRef(null)
@@ -18,8 +38,9 @@ export default function Home() {
     const responses = {}
 
     QUESTIONS.forEach((q) => {
-      const values = fd.getAll(`q${q.id}[]`).map(String)
-      responses[`q${q.id}`] = values
+      // radio inputs: single value (keep as array for compatibility)
+      const val = fd.get(`q${q.id}`)
+      responses[`q${q.id}`] = val ? [String(val)] : []
     })
 
     try {
@@ -65,13 +86,14 @@ export default function Home() {
               <legend style={{ fontWeight: '600', marginBottom: '0.5rem' }}>Question {q.id}</legend>
               <p style={{ margin: '0 0 0.5rem 0', color: '#333' }}>{q.text}</p>
 
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                {[1, 2, 3, 4, 5].map((val) => {
+              <div role="radiogroup" aria-label={`Question ${q.id} choices`} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                {(q.choices || DEFAULT_CHOICES).map((labelText, idx) => {
+                  const val = idx + 1
                   const id = `q${q.id}-opt${val}`
                   return (
-                    <label key={val} htmlFor={id} style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}>
-                      <input type="checkbox" id={id} name={`q${q.id}[]`} value={String(val)} />
-                      <span style={{ fontSize: '0.9rem' }}>{val}</span>
+                    <label key={val} htmlFor={id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', cursor: 'pointer', minWidth: '2.5rem' }}>
+                      <span style={{ fontSize: '0.95rem', fontWeight: 600 }}>{labelText}</span>
+                      <input type="radio" id={id} name={`q${q.id}`} value={String(val)} />
                     </label>
                   )
                 })}
