@@ -52,18 +52,7 @@ export default function Home() {
       if (!resp.ok) throw new Error('Server rejected submission')
       setMessage('Responses saved, thank you.')
     } catch (e) {
-      // fallback to localStorage
-      const key = 'survey_responses'
-      const existingRaw = typeof window !== 'undefined' ? localStorage.getItem(key) : null
-      let existing = []
-      try {
-        existing = existingRaw ? JSON.parse(existingRaw) : []
-      } catch (err) {
-        existing = []
-      }
-      existing.push({ timestamp: new Date().toISOString(), responses })
-      localStorage.setItem(key, JSON.stringify(existing))
-      setMessage('Failed to save to server — responses saved locally instead.')
+      setMessage('failed to save to server')
     }
   }
 
