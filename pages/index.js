@@ -14,11 +14,6 @@ export default function Home() {
       <main>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
           <Header title="hello" />
-          <Link href="/survey" passHref>
-            <a style={{ padding: '0.75rem 1.25rem', background: '#0070f3', color: '#fff', borderRadius: '8px', textDecoration: 'none' }}>
-              Go to Survey
-            </a>
-          </Link>
         </div>
 
         <section style={{ marginTop: '1.5rem', maxWidth: '32rem' }}>
