@@ -54,7 +54,7 @@ export default function Home() {
           <div>
             <h1 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', margin: '0 0 0.85rem' }}>Hello</h1>
             <p style={{ color: '#475569', maxWidth: '50rem', margin: 0 }}>
-              This is the starter page. This page introduces the survey and lets you move on to the questions. if more text added test test test test test test tfhkdbfksdjfhskdfhadjklsfhsdklfhsdklafhdklfjghsdfkljghsdfklgjh sdfkljghsdfjkgh sdfjklgh sdfjkgh sdfjklgh
+              This is the starter page. This page introduces the survey and lets you move on to the questions. if more text added test test test Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
           <Link
