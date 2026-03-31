@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
+
+const SURVEY_COMPLETED_KEY = 'surveyCompleted'
 
 const DEFAULT_CHOICES = ['1', '2', '3', '4', '5']
 
@@ -36,6 +38,13 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [pendingResponses, setPendingResponses] = useState(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (window.localStorage.getItem(SURVEY_COMPLETED_KEY) === 'true') {
+      router.replace('/thanks')
+    }
+  }, [router])
 
   function collectResponses() {
     const fd = new FormData(formRef.current)
@@ -81,6 +90,10 @@ export default function Home() {
         throw new Error(errorBody.error || 'Server rejected submission')
       }
 
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(SURVEY_COMPLETED_KEY, 'true')
+      }
+
       setMessage('your responses have been submitted. Thank you.')
       return true
     } catch (e) {
@@ -96,7 +109,7 @@ export default function Home() {
     if (!pendingResponses || isSubmitting) return
     const success = await handleSave(pendingResponses)
     if (success) {
-      router.push('/thanks')
+      router.replace('/thanks')
     }
   }
 

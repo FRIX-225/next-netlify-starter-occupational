@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 
+const SURVEY_COMPLETED_KEY = 'surveyCompleted'
+
 export default function Home() {
+  const [hasCompleted, setHasCompleted] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setHasCompleted(window.localStorage.getItem(SURVEY_COMPLETED_KEY) === 'true')
+  }, [])
   return (
     <>
       <div className="container">
@@ -25,7 +33,7 @@ export default function Home() {
           </section>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-            <Link href="/survey" className="primary-cta">
+            <Link href={hasCompleted ? '/thanks' : '/survey'} className="primary-cta">
               Start survey
             </Link>
           </div>
