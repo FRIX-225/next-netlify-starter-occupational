@@ -10,6 +10,17 @@
   --color-header-text: #ffffff;
   --color-footer-bg: #f7edf5;
   --color-footer-text: #2f1b31;
+  --color-muted-text: #64748b;
+  --color-question-bg: #f8fafc;
+  --color-card-bg: #ffffff;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-input-border: #cbd5e1;
+  --color-input-bg: #ffffff;
+  --color-button-bg: #0f172a;
+  --color-button-text: #ffffff;
+  --color-button-secondary-bg: #e2e8f0;
+  --color-success: #166534;
   --header-height: 88px;
   --footer-height: 100px;
 }
@@ -160,6 +171,17 @@ code {
     --color-footer-text: #cbd5e1;
     --color-primary: #a2597d;
     --color-primary-hover: #8f436f;
+    --color-muted-text: #94a3b8;
+    --color-question-bg: #0b1220;
+    --color-card-bg: #111a2e;
+    --color-accent: #60a5fa;
+    --color-accent-hover: #3b82f6;
+    --color-input-border: #475569;
+    --color-input-bg: #1e293b;
+    --color-button-bg: #1e293b;
+    --color-button-text: #e2e8f0;
+    --color-button-secondary-bg: #334155;
+    --color-success: #10b981;
   }
 
   body {
@@ -168,7 +190,7 @@ code {
   }
 
   .primary-card {
-    background: var(--color-surface);
+    background: var(--color-card-bg);
     border: 1px solid var(--color-border);
     box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
   }

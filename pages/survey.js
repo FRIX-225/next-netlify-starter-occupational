@@ -161,7 +161,7 @@ export default function Home() {
         .survey-root {
           padding: 2.5rem 1rem 4rem;
           font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-          background: #f8fafc;
+          background: var(--color-background);
         }
 
         .survey-main {
@@ -173,8 +173,8 @@ export default function Home() {
         }
 
         .survey-card {
-          background: #ffffff;
-          border: 1px solid rgba(15, 23, 42, 0.08);
+          background: var(--color-card-bg);
+          border: 1px solid var(--color-border);
           border-radius: 32px;
           padding: 2rem;
           box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
@@ -195,7 +195,7 @@ export default function Home() {
 
         .survey-subtitle {
           margin: 0;
-          color: #475569;
+          color: var(--color-muted-text);
           line-height: 1.7;
           max-width: 44rem;
         }
@@ -206,10 +206,10 @@ export default function Home() {
         }
 
         .survey-question {
-          border: 1px solid #e2e8f0;
+          border: 1px solid var(--color-border);
           border-radius: 24px;
           padding: 1.25rem 1.25rem 1rem;
-          background: #f8fafc;
+          background: var(--color-question-bg);
         }
 
         .question-legend {
@@ -217,13 +217,13 @@ export default function Home() {
           font-size: 0.8rem;
           text-transform: uppercase;
           letter-spacing: 0.15em;
-          color: #64748b;
+          color: var(--color-muted-text);
           font-weight: 700;
         }
 
         .question-text {
           margin: 0 0 1rem;
-          color: #111827;
+          color: var(--color-text);
           line-height: 1.6;
           font-size: 1rem;
         }
@@ -244,13 +244,13 @@ export default function Home() {
           border-radius: 16px;
           cursor: pointer;
           user-select: none;
-          color: #0f172a;
+          color: var(--color-text);
           text-align: center;
           justify-content: center;
         }
 
         .option:hover .option-circle {
-          border-color: #94a3b8;
+          border-color: var(--color-muted-text);
         }
 
         .option input {
@@ -264,8 +264,8 @@ export default function Home() {
           width: 1.1rem;
           height: 1.1rem;
           border-radius: 50%;
-          border: 1.5px solid #cbd5e1;
-          background: #ffffff;
+          border: 1.5px solid var(--color-input-border);
+          background: var(--color-input-bg);
           transition: border-color 0.2s ease, transform 0.2s ease;
           flex-shrink: 0;
         }
@@ -278,7 +278,7 @@ export default function Home() {
           height: 0.4rem;
           transform: translate(-50%, -50%) scale(0);
           border-radius: 50%;
-          background: #2563eb;
+          background: var(--color-accent);
           transition: transform 0.2s ease;
         }
 
@@ -289,11 +289,11 @@ export default function Home() {
         }
 
         .option input:checked + .option-label {
-          color: #0f172a;
+          color: var(--color-text);
         }
 
         .option input:checked + .option-label + .option-circle {
-          border-color: #2563eb;
+          border-color: var(--color-accent);
           transform: scale(1.05);
         }
 
@@ -312,8 +312,8 @@ export default function Home() {
         .submitButton {
           border: none;
           border-radius: 999px;
-          background: #0f172a;
-          color: #ffffff;
+          background: var(--color-button-bg);
+          color: var(--color-button-text);
           padding: 0.95rem 1.4rem;
           font-size: 1rem;
           font-weight: 700;
@@ -323,27 +323,27 @@ export default function Home() {
 
         .submitButton:hover {
           transform: translateY(-1px);
-          background: #111827;
+          background: var(--color-accent);
         }
 
         .submitButton.secondary {
-          background: #e2e8f0;
-          color: #0f172a;
+          background: var(--color-button-secondary-bg);
+          color: var(--color-text);
         }
 
         .submitButton.secondary:hover {
-          background: #cbd5e1;
+          background: var(--color-muted-text);
         }
 
         .confirmation {
           margin: 0;
-          color: #0f172a;
+          color: var(--color-text);
           font-weight: 700;
         }
 
         .message {
           margin: 0;
-          color: #166534;
+          color: var(--color-success);
           font-size: 0.95rem;
         }
 

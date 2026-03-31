@@ -16,7 +16,7 @@ export default function Home() {
 
         <main className="primary-card">
           <section className="body-text" style={{ textAlign: 'center' }}>
-            <h1 style={{ margin: '0 0 0.9rem', fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#0f172a' }}>
+            <h1 style={{ margin: '0 0 0.9rem', fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-text)' }}>
               Welcome to the Occupational Survey
             </h1>
             <p>
@@ -30,7 +30,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <section className="body-text" style={{ marginTop: '1.6rem', background: '#f8fafc', borderRadius: '16px', padding: '1rem', border: '1px solid #dbe6f6' }}>
+          <section className="body-text" style={{ marginTop: '1.6rem', background: 'var(--color-background)', borderRadius: '16px', padding: '1rem', border: '1px solid var(--color-border)' }}>
             <p>
               Participation is anonymous and voluntary. Data is handled in compliance with GDPR standards. By continuing, you consent to use your aggregated feedback for occupational research and quality improvements.
             </p>
