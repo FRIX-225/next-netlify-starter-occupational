@@ -175,7 +175,7 @@ code {
   --color-card-bg: #0f0a0a;
   --color-accent: #60a5fa;
   --color-accent-hover: #3b82f6;
-  --color-input-border: #1a0f0f;
+  --color-input-border: #573c3c;
   --color-input-bg: #0f0a0a;
   --color-button-bg: #1a0f0f;
   --color-button-text: #e2e8f0;
@@ -236,7 +236,7 @@ code {
 }
 
 .body-text {
-  color: #334155;
+  color: #e2e8f0e6;
   line-height: 1.72;
 }
 

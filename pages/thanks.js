@@ -18,7 +18,7 @@ export default function ThanksPage() {
       <Link href="/" style={{
         marginTop: '1.5rem',
         padding: '0.75rem 1.25rem',
-        background: '#000',
+        background: '#242633',
         color: '#fff',
         borderRadius: '999px',
         textDecoration: 'none',
