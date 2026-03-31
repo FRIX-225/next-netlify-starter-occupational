@@ -172,14 +172,14 @@ code {
   --color-primary-hover: #6a2f45;
   --color-muted-text: #94a3b8;
   --color-question-bg: #0a0a0a;
-  --color-card-bg: #0f0a0a;
+  --color-card-bg: #230f0f;
   --color-accent: #60a5fa;
   --color-accent-hover: #3b82f6;
   --color-input-border: #573c3c;
   --color-input-bg: #0f0a0a;
-  --color-button-bg: #1a0f0f;
+  --color-button-bg: #7a3a55;
   --color-button-text: #e2e8f0;
-  --color-button-secondary-bg: #2a1a1a;
+  --color-button-secondary-bg: #502538;
   --color-success: #10b981;
 }
 

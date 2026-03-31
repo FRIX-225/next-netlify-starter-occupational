@@ -63,7 +63,7 @@ export default function Home() {
     if (!formRef.current || isSubmitting) return
     setPendingResponses(collectResponses())
     setShowConfirmation(true)
-    setMessage('Once submitted, they cannot be changed.')
+    setMessage('Once submitted, your answers cannot be changed.')
   }
 
   function handleCancel() {
@@ -345,7 +345,7 @@ export default function Home() {
         }
 
         .submitButton.secondary:hover {
-          background: var(--color-muted-text);
+          background: var(--color-accent);
         }
 
         .confirmation {
