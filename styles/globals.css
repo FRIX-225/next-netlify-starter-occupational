@@ -160,26 +160,26 @@ code {
 }
 
 .dark {
-  --color-background: #1a0f0f;
+  --color-background: #0a0a0a;
   --color-text: #e2e8f0;
-  --color-surface: #2a1a1a;
-  --color-border: #3a2a2a;
-  --color-header-start: #3f1130;
-  --color-header-end: #662b57;
-  --color-footer-bg: #1a0f0f;
+  --color-surface: #0f0a0a;
+  --color-border: #1a0f0f;
+  --color-header-start: #1a0a0a;
+  --color-header-end: #2a0f0f;
+  --color-footer-bg: #0a0a0a;
   --color-footer-text: #cbd5e1;
-  --color-primary: #a2597d;
-  --color-primary-hover: #8f436f;
+  --color-primary: #7a3a55;
+  --color-primary-hover: #6a2f45;
   --color-muted-text: #94a3b8;
-  --color-question-bg: #1a0f0f;
-  --color-card-bg: #2a1a1a;
+  --color-question-bg: #0a0a0a;
+  --color-card-bg: #0f0a0a;
   --color-accent: #60a5fa;
   --color-accent-hover: #3b82f6;
-  --color-input-border: #4a3a3a;
-  --color-input-bg: #3a2a2a;
-  --color-button-bg: #3a2a2a;
+  --color-input-border: #1a0f0f;
+  --color-input-bg: #0f0a0a;
+  --color-button-bg: #1a0f0f;
   --color-button-text: #e2e8f0;
-  --color-button-secondary-bg: #4a3a3a;
+  --color-button-secondary-bg: #2a1a1a;
   --color-success: #10b981;
 }
 
@@ -195,7 +195,7 @@ code {
 }
 
 .dark .app-footer {
-  border-top-color: #3a2a2a;
+  border-top-color: #1a0f0f;
 }
 
 .dark .app-header {
