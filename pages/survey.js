@@ -44,15 +44,23 @@ export default function Home() {
     })
 
     try {
-      const resp = await fetch('/api/submit', {
+      const resp = await fetch('/api/submit-survey', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ responses }),
       })
-      if (!resp.ok) throw new Error('Server rejected submission')
-      setMessage('Responses saved, thank you.')
+
+      if (!resp.ok) {
+        const errorBody = await resp.json().catch(() => ({}))
+        throw new Error(errorBody.error || 'Server rejected submission')
+      }
+
+      setMessage('Responses saved to Google Sheets. Thank you.')
     } catch (e) {
-      setMessage('failed to save to server')
+      console.error('submit failed', e)
+      setMessage('Failed to save to server')
     }
   }
 
