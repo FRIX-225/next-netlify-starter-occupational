@@ -222,8 +222,8 @@ code {
   padding: 1rem 1.6rem;
   margin: 0.5rem auto 0;
   text-decoration: none;
-  background: #7a2f61;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-button-text);
   border-radius: 999px;
   font-weight: 700;
   transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
@@ -231,12 +231,16 @@ code {
 
 .primary-cta:hover {
   transform: translateY(-1px);
-  background: #5f224f;
-  box-shadow: 0 9px 24px rgba(20, 12, 24, 0.25);
+  background: var(--color-primary-hover);
+  box-shadow: 0 9px 24px rgba(122, 47, 97, 0.25);
+}
+
+.dark .primary-cta:hover {
+  box-shadow: 0 9px 24px rgba(106, 47, 69, 0.35);
 }
 
 .body-text {
-  color: #e2e8f0e6;
+  color: var(--color-text);
   line-height: 1.72;
 }
 
