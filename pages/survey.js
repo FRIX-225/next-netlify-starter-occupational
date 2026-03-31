@@ -102,9 +102,9 @@ export default function Home() {
 
   return (
     <div className="container survey-root">
+      <Header title="Comenius University" subtitle="Occupational survey" />
 
       <main className="survey-main">
-
         <section className="survey-card">
           <div className="survey-header">
             <h1 className="survey-title">Occupational Survey</h1>
