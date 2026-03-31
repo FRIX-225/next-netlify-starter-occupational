@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
@@ -29,11 +30,14 @@ const QUESTIONS = [
 ]
 
 export default function Home() {
+  const router = useRouter()
   const formRef = useRef(null)
   const [message, setMessage] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showConfirmation, setShowConfirmation] = useState(false)
+  const [pendingResponses, setPendingResponses] = useState(null)
 
-  async function handleSave() {
-    if (!formRef.current) return
+  function collectResponses() {
     const fd = new FormData(formRef.current)
     const responses = {}
 
@@ -42,6 +46,26 @@ export default function Home() {
       const val = fd.get(`q${q.id}`)
       responses[`q${q.id}`] = val ? [String(val)] : []
     })
+
+    return responses
+  }
+
+  function handleContinue() {
+    if (!formRef.current || isSubmitting) return
+    setPendingResponses(collectResponses())
+    setShowConfirmation(true)
+    setMessage('Once submitted, they cannot be changed.')
+  }
+
+  function handleCancel() {
+    setShowConfirmation(false)
+    setPendingResponses(null)
+    setMessage('')
+  }
+
+  async function handleSave(responses) {
+    setMessage('Submitting your responses…')
+    setIsSubmitting(true)
 
     try {
       const resp = await fetch('/api/submit-survey', {
@@ -57,10 +81,22 @@ export default function Home() {
         throw new Error(errorBody.error || 'Server rejected submission')
       }
 
-      setMessage('Responses saved to Google Sheets. Thank you.')
+      setMessage('your responses have been submitted. Thank you.')
+      return true
     } catch (e) {
       console.error('submit failed', e)
-      setMessage('Failed to save to server')
+      setMessage('Failed to save responses.')
+      return false
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  async function handleConfirm() {
+    if (!pendingResponses || isSubmitting) return
+    const success = await handleSave(pendingResponses)
+    if (success) {
+      router.push('/thanks')
     }
   }
 
@@ -98,9 +134,21 @@ export default function Home() {
             ))}
 
             <div className="actions">
-              <button type="button" onClick={handleSave} className="submitButton">
-                Continue
-              </button>
+              {showConfirmation ? (
+                <>
+                  <p className="confirmation">Are you sure these are your answers?</p>
+                  <button type="button" onClick={handleConfirm} className="submitButton" disabled={isSubmitting}>
+                    Yes
+                  </button>
+                  <button type="button" onClick={handleCancel} className="submitButton secondary" disabled={isSubmitting}>
+                    No
+                  </button>
+                </>
+              ) : (
+                <button type="button" onClick={handleContinue} className="submitButton" disabled={isSubmitting}>
+                  Continue
+                </button>
+              )}
               {message && <p className="message">{message}</p>}
             </div>
           </form>
@@ -276,6 +324,21 @@ export default function Home() {
         .submitButton:hover {
           transform: translateY(-1px);
           background: #111827;
+        }
+
+        .submitButton.secondary {
+          background: #e2e8f0;
+          color: #0f172a;
+        }
+
+        .submitButton.secondary:hover {
+          background: #cbd5e1;
+        }
+
+        .confirmation {
+          margin: 0;
+          color: #0f172a;
+          font-weight: 700;
         }
 
         .message {
