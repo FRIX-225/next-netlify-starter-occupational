@@ -242,24 +242,26 @@ export default function Home() {
         }
 
         .options {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-          gap: 0.75rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.35rem;
           width: 100%;
         }
 
         .option {
-          display: inline-flex;
+          display: flex;
           flex-direction: column;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.35rem 0;
+          padding: 0.2rem 0.1rem;
           border-radius: 16px;
           cursor: pointer;
           user-select: none;
           color: var(--color-text);
           text-align: center;
           justify-content: center;
+          flex: 1 1 auto;
+          min-width: 50px;
         }
 
         .option:hover .option-circle {
@@ -296,9 +298,11 @@ export default function Home() {
         }
 
         .option-label {
-          font-size: 0.95rem;
+          font-size: clamp(0.7rem, 1.8vw, 0.95rem);
           font-weight: 600;
           transition: color 0.2s ease;
+          width: 100%;
+          line-height: 1.3;
         }
 
         .option input:checked + .option-label {
@@ -370,9 +374,7 @@ export default function Home() {
           }
 
           .option {
-            min-width: 3rem;
-            padding: 0.7rem 0.9rem;
-            font-size: 0.9rem;
+            padding: 0.35rem 0;
           }
 
           .survey-title {
