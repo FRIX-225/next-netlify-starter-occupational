@@ -6,29 +6,24 @@ import Footer from '@components/Footer'
 
 const SURVEY_COMPLETED_KEY = 'surveyCompleted'
 
-const DEFAULT_CHOICES = ['1', '2', '3', '4', '5']
+const DEFAULT_CHOICES = ['Never', 'Rarely', 'Sometimes', 'Frequently', 'Very Frequently']
 
 const QUESTIONS = [
-  { id: 1, text: 'Placeholder question 1', choices: ['Very dissatisfied', 'Dissatisfied', 'Neutral', 'Satisfied', 'Very satisfied'] },
-  { id: 2, text: 'Placeholder question 2', choices: ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'] },
-  { id: 3, text: 'Placeholder question 3' },
-  { id: 4, text: 'Placeholder question 4' },
-  { id: 5, text: 'Placeholder question 5' },
-  { id: 6, text: 'Placeholder question 6' },
-  { id: 7, text: 'Placeholder question 7' },
-  { id: 8, text: 'Placeholder question 8' },
-  { id: 9, text: 'Placeholder question 9', choices: ['Poor', 'Fair', 'Good', 'Very good', 'Excellent'] },
-  { id: 10, text: 'Placeholder question 10' },
-  { id: 11, text: 'Placeholder question 11' },
-  { id: 12, text: 'Placeholder question 12' },
-  { id: 13, text: 'Placeholder question 13' },
-  { id: 14, text: 'Placeholder question 14' },
-  { id: 15, text: 'Placeholder question 15', choices: ['Very unlikely', 'Unlikely', 'Neutral', 'Likely', 'Very likely'] },
-  { id: 16, text: 'Placeholder question 16' },
-  { id: 17, text: 'Placeholder question 17' },
-  { id: 18, text: 'Placeholder question 18' },
-  { id: 19, text: 'Placeholder question 19' },
-  { id: 20, text: 'Placeholder question 20' },
+  { id: 1, text: 'intentionally arriving late for work?' },
+  { id: 2, text: 'calling in sick when not really ill?' },
+  { id: 3, text: 'taking undeserved breaks to avoid work?' },
+  { id: 4, text: 'making unauthorized use of organizational property?' },
+  { id: 5, text: 'leaving work early without permission?' },
+  { id: 6, text: 'lying about the number of hours worked?' },
+  { id: 7, text: 'working on a personal matter on the job instead of working for the employer?' },
+  { id: 8, text: 'purposely ignoring the supervisor\'s instructions?' },
+  { id: 9, text: 'intentionally slowing down the pace of work?' },
+  { id: 10, text: 'using an ethnic, racial, or religious slur against a co-worker?' },
+  { id: 11, text: 'swearing at a co-worker?' },
+  { id: 12, text: 'refusing to talk to a co-worker?' },
+  { id: 13, text: 'gossiping about the supervisor?' },
+  { id: 14, text: 'making an obscene comment or gesture at a co-worker?' },
+  { id: 15, text: 'teasing a co-worker in front of other employees?' },
 ]
 
 export default function Home() {
@@ -36,8 +31,6 @@ export default function Home() {
   const formRef = useRef(null)
   const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showConfirmation, setShowConfirmation] = useState(false)
-  const [pendingResponses, setPendingResponses] = useState(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -61,56 +54,9 @@ export default function Home() {
 
   function handleContinue() {
     if (!formRef.current || isSubmitting) return
-    setPendingResponses(collectResponses())
-    setShowConfirmation(true)
-    setMessage('Once submitted, your answers cannot be changed.')
-  }
-
-  function handleCancel() {
-    setShowConfirmation(false)
-    setPendingResponses(null)
-    setMessage('')
-  }
-
-  async function handleSave(responses) {
-    setMessage('Submitting your responses…')
-    setIsSubmitting(true)
-
-    try {
-      const resp = await fetch('/api/submit-survey', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ responses }),
-      })
-
-      if (!resp.ok) {
-        const errorBody = await resp.json().catch(() => ({}))
-        throw new Error(errorBody.error || 'Server rejected submission')
-      }
-
-      if (typeof window !== 'undefined') {
-        window.localStorage.setItem(SURVEY_COMPLETED_KEY, 'true')
-      }
-
-      setMessage('your responses have been submitted. Thank you.')
-      return true
-    } catch (e) {
-      console.error('submit failed', e)
-      setMessage('Failed to save responses.')
-      return false
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  async function handleConfirm() {
-    if (!pendingResponses || isSubmitting) return
-    const success = await handleSave(pendingResponses)
-    if (success) {
-      router.replace('/thanks')
-    }
+    const responses = collectResponses()
+    localStorage.setItem('surveyResponses', JSON.stringify(responses))
+    router.push('/demographics')
   }
 
   return (
@@ -121,13 +67,13 @@ export default function Home() {
         <section className="survey-card">
           <div className="survey-header">
             <h1 className="survey-title">Occupational Survey</h1>
-            <p className="survey-subtitle">A quick survey about your work experience. Select one option per question.</p>
+            <p className="survey-subtitle">Please answer the following questions based on how many times you have observed these events at your workplace.</p>
           </div>
 
           <form ref={formRef} aria-label="Twenty question survey" className="survey-form">
             {QUESTIONS.map((q) => (
               <fieldset key={q.id} className="survey-question">
-                <legend className="question-legend">Question {q.id}</legend>
+                <legend className="question-legend">How often have you witnessed…</legend>
                 <p className="question-text">{q.text}</p>
 
                 <div role="radiogroup" aria-label={`Question ${q.id} choices`} className="options">
@@ -147,21 +93,9 @@ export default function Home() {
             ))}
 
             <div className="actions">
-              {showConfirmation ? (
-                <>
-                  <p className="confirmation">Are you sure these are your answers?</p>
-                  <button type="button" onClick={handleConfirm} className="submitButton" disabled={isSubmitting}>
-                    Yes
-                  </button>
-                  <button type="button" onClick={handleCancel} className="submitButton secondary" disabled={isSubmitting}>
-                    No
-                  </button>
-                </>
-              ) : (
-                <button type="button" onClick={handleContinue} className="submitButton" disabled={isSubmitting}>
-                  Continue
-                </button>
-              )}
+              <button type="button" onClick={handleContinue} className="submitButton" disabled={isSubmitting}>
+                Continue
+              </button>
               {message && <p className="message">{message}</p>}
             </div>
           </form>
@@ -210,7 +144,7 @@ export default function Home() {
           margin: 0;
           color: var(--color-muted-text);
           line-height: 1.7;
-          max-width: 44rem;
+          max-width: 55rem;
         }
 
         .survey-form {
