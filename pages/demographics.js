@@ -44,9 +44,9 @@ export default function Additional() {
         responses[`q${q.id}`] = val ? [String(val)] : []
       } else if (q.type === 'select') {
         const val = fd.get(`q${q.id}`)
-        if (val === 'Others') {
-          const othersVal = fd.get('q2-others')
-          responses[`q${q.id}`] = othersVal ? [String(othersVal)] : ['Others']
+        if (val === 'Other (please specify)') {
+          const othersVal = fd.get('q17-others')
+          responses[`q${q.id}`] = othersVal ? [String(othersVal)] : ['Other (please specify)']
         } else {
           responses[`q${q.id}`] = val ? [String(val)] : []
         }
@@ -125,10 +125,10 @@ export default function Additional() {
                   <input type="text" name={`q${q.id}`} placeholder="Your answer" className="text-input" />
                 ) : q.type === 'select' ? (
                   <>
-                    <select name={`q${q.id}`} onChange={(e) => setShowOthersInput(e.target.value === 'Others')} className="select-input">
+                    <select name={`q${q.id}`} onChange={(e) => setShowOthersInput(e.target.value === 'Other (please specify)')} className="select-input">
                       {q.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
                     </select>
-                    {showOthersInput && <input type="text" name="q2-others" placeholder="Please specify" className="text-input" />}
+                    {showOthersInput && <input type="text" name="q17-others" placeholder="Please specify" className="text-input" />}
                   </>
                 ) : null}
               </fieldset>
@@ -372,7 +372,7 @@ export default function Additional() {
 
         .confirmation-btn-no:hover:not(:disabled) {
           transform: translateY(-1px);
-          background: var(--color-background);
+          background: var(--color-accent-hover);
         }
 
         @media (max-width: 680px) {

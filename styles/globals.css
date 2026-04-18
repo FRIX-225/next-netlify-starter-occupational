@@ -3,18 +3,18 @@
   --color-text: #0f172a;
   --color-surface: #ffffff;
   --color-border: #e4ecf8;
-  --color-primary: #7a2f61;
-  --color-primary-hover: #5f224f;
-  --color-header-start: #5a1a3d;
-  --color-header-end: #8c306b;
+  --color-primary: #2596be;
+  --color-primary-hover: #2286aa;
+  --color-header-start: #2596be;
+  --color-header-end: #2596be;
   --color-header-text: #ffffff;
-  --color-footer-bg: #f7edf5;
+  --color-footer-bg: rgba(37, 149, 190, 0.113);
   --color-footer-text: #2f1b31;
   --color-muted-text: #64748b;
   --color-question-bg: #f8fafc;
   --color-card-bg: #ffffff;
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
+  --color-accent: #39aed8;
+  --color-accent-hover: #39aed8;
   --color-input-border: #cbd5e1;
   --color-input-bg: #ffffff;
   --color-button-bg: #0f172a;
@@ -160,26 +160,27 @@ code {
 }
 
 .dark {
-  --color-background: #0a0a0a;
+  --color-background: #0f1419;
   --color-text: #e2e8f0;
-  --color-surface: #0f0a0a;
-  --color-border: #1a0f0f;
-  --color-header-start: #1a0a0a;
-  --color-header-end: #2a0f0f;
-  --color-footer-bg: #0a0a0a;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-primary: #1e40af;
+  --color-primary-hover: #1d4ed8;
+  --color-header-start: #1e40af;
+  --color-header-end: #1e40af;
+  --color-header-text: #ffffff;
+  --color-footer-bg: rgba(30, 64, 175, 0.1);
   --color-footer-text: #cbd5e1;
-  --color-primary: #7a3a55;
-  --color-primary-hover: #6a2f45;
   --color-muted-text: #94a3b8;
-  --color-question-bg: #0a0a0a;
-  --color-card-bg: #230f0f;
-  --color-accent: #60a5fa;
-  --color-accent-hover: #3b82f6;
-  --color-input-border: #573c3c;
-  --color-input-bg: #0f0a0a;
-  --color-button-bg: #7a3a55;
-  --color-button-text: #e2e8f0;
-  --color-button-secondary-bg: #502538;
+  --color-question-bg: #0f1419;
+  --color-card-bg: #1e293b;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  --color-input-border: #475569;
+  --color-input-bg: #1e293b;
+  --color-button-bg: #1e40af;
+  --color-button-text: #ffffff;
+  --color-button-secondary-bg: #334155;
   --color-success: #10b981;
 }
 
