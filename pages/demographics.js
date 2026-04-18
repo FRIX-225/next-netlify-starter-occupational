@@ -7,8 +7,8 @@ import Footer from '@components/Footer'
 const SURVEY_COMPLETED_KEY = 'surveyCompleted'
 
 const QUESTIONS = [
-  { id: 1, text: 'What is your favorite color?', type: 'text' },
-  { id: 2, text: 'What is your occupation?', type: 'select', options: ['Engineer', 'Teacher', 'Doctor', 'Others'] },
+  { id: 16, text: 'What is the name of your organization?', type: 'text' },
+  { id: 17, text: 'What setting do you work in?', type: 'select', options: ['Office', 'Remote', 'Hybrid', 'Healthcare', 'Education', 'Retail', 'Hospitality', 'Industrial', 'Construction', 'Laboratory', 'Creative studio', 'Outdoor', 'Freelance', 'Other (please specify)'] },
 ]
 
 export default function Additional() {
@@ -33,6 +33,7 @@ export default function Additional() {
   }, [router])
 
   function collectResponses() {
+    if (!formRef.current) return {}
     const fd = new FormData(formRef.current)
     const responses = {}
 

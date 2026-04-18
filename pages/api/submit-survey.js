@@ -30,6 +30,10 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (!process.env.GOOGLE_CLIENT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY || !process.env.GOOGLE_SHEET_ID) {
+      return res.status(500).json({ error: 'Server configuration error: missing credentials' });
+    }
+
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_CLIENT_EMAIL,

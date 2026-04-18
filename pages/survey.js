@@ -40,6 +40,7 @@ export default function Home() {
   }, [router])
 
   function collectResponses() {
+    if (!formRef.current) return {}
     const fd = new FormData(formRef.current)
     const responses = {}
 
