@@ -28,7 +28,9 @@ export default function Home() {
               Welcome to the Occupational Survey
             </h1>
             <p>
-              This is a professional, secure survey interface for Comenius University research participants. Please click below to start and complete each question honestly.
+              We are psychology students at Comenius University Bratislava. We would like to invite you to take part in this short survey for a school project. This survey aims to gather information about deviant behavior in the workplace. The goal of this project is to research methods of support for organizations to create safer and more efficient working environments for all. <br />
+              <br />This survey is based on a study conducted in 1999 and published in the Journal of Organizational Behavior. <br />
+              <br />Please click below to start the survey
             </p>
           </section>
 
@@ -38,9 +40,10 @@ export default function Home() {
             </Link>
           </div>
 
-          <section className="body-text" style={{ marginTop: '1.6rem', background: 'var(--color-background)', borderRadius: '16px', padding: '1rem', border: '1px solid var(--color-border)' }}>
+          <section className="body-text" style={{ marginTop: '1.6rem', background: 'var(--color-background)', borderRadius: '16px', padding: '1rem', border: '1px solid var(--color-border)', textAlign: 'center'}}>
             <p>
-              Participation is anonymous and voluntary. Data is handled in compliance with GDPR standards. By continuing, you consent to use your aggregated feedback for occupational research and quality improvements.
+              Participation is anonymous and voluntary. Data is handled in compliance with GDPR standards. All data will be stored securely locally, and will only be used for education purposes.<br />
+              <br />By continuing, you consent to the use of your responses for research in occupational psychology.
             </p>
           </section>
         </main>

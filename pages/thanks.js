@@ -13,7 +13,7 @@ export default function ThanksPage() {
     }}>
       <h1>Thank you!</h1>
       <p style={{ maxWidth: '38rem', margin: '1rem 0' }}>
-        Your survey responses have been received. We appreciate your time and feedback.
+        Your survey responses have been received. We appreciate your time.
       </p>
       <Link href="/" style={{
         marginTop: '1.5rem',
