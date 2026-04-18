@@ -18,6 +18,7 @@ export default function Additional() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showOthersInput, setShowOthersInput] = useState(false)
   const [previousResponses, setPreviousResponses] = useState({})
+  const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -90,6 +91,19 @@ export default function Additional() {
     }
   }
 
+  function handleSubmitClick() {
+    setShowConfirmation(true)
+  }
+
+  function handleConfirmSubmit() {
+    setShowConfirmation(false)
+    handleSave()
+  }
+
+  function handleCancelSubmit() {
+    setShowConfirmation(false)
+  }
+
   return (
     <div className="container survey-root">
       <Header title="Comenius University" subtitle="Additional survey" />
@@ -121,7 +135,10 @@ export default function Additional() {
             ))}
 
             <div className="actions">
-              <button type="button" onClick={handleSave} className="submitButton" disabled={isSubmitting}>
+              <button type="button" onClick={() => router.push('/survey')} className="submitButton secondary" disabled={isSubmitting}>
+                Go Back
+              </button>
+              <button type="button" onClick={handleSubmitClick} className="submitButton" disabled={isSubmitting}>
                 Submit
               </button>
               {message && <p className="message">{message}</p>}
@@ -129,6 +146,25 @@ export default function Additional() {
           </form>
         </section>
       </main>
+
+      {showConfirmation && (
+        <div className="confirmation-overlay">
+          <div className="confirmation-modal">
+            <h2 className="confirmation-title">Confirm Submission</h2>
+            <p className="confirmation-message">
+              Are you sure you want to submit your responses? Once submitted, no further changes can be made to your answers.
+            </p>
+            <div className="confirmation-actions">
+              <button type="button" onClick={handleConfirmSubmit} className="confirmation-btn confirmation-btn-yes" disabled={isSubmitting}>
+                Yes, Submit
+              </button>
+              <button type="button" onClick={handleCancelSubmit} className="confirmation-btn confirmation-btn-no" disabled={isSubmitting}>
+                No, Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
 
@@ -217,6 +253,7 @@ export default function Additional() {
           gap: 1rem;
           align-items: center;
           margin-top: 1rem;
+          justify-content: flex-start;
         }
 
         .submitButton {
@@ -237,12 +274,14 @@ export default function Additional() {
         }
 
         .submitButton.secondary {
-          background: var(--color-button-secondary-bg);
+          background: var(--color-background);
           color: var(--color-text);
+          border: 1px solid var(--color-border);
         }
 
-        .submitButton.secondary:hover {
+        .submitButton.secondary:hover:not(:disabled) {
           background: var(--color-accent);
+          border-color: var(--color-accent);
         }
 
         .confirmation {
@@ -255,6 +294,85 @@ export default function Additional() {
           margin: 0;
           color: var(--color-success);
           font-size: 0.95rem;
+        }
+
+        .confirmation-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+        }
+
+        .confirmation-modal {
+          background: var(--color-card-bg);
+          border: 1px solid var(--color-border);
+          border-radius: 24px;
+          padding: 2rem;
+          max-width: 400px;
+          width: 90%;
+          box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+        }
+
+        .confirmation-title {
+          margin: 0 0 1rem 0;
+          font-size: 1.5rem;
+          color: var(--color-text);
+          letter-spacing: -0.02em;
+        }
+
+        .confirmation-message {
+          margin: 0 0 1.5rem 0;
+          color: var(--color-text);
+          line-height: 1.6;
+          font-size: 1rem;
+        }
+
+        .confirmation-actions {
+          display: flex;
+          gap: 0.75rem;
+          flex-direction: column;
+        }
+
+        .confirmation-btn {
+          border: none;
+          border-radius: 999px;
+          padding: 0.95rem 1.4rem;
+          font-size: 1rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .confirmation-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .confirmation-btn-yes {
+          background: var(--color-button-bg);
+          color: var(--color-button-text);
+        }
+
+        .confirmation-btn-yes:hover:not(:disabled) {
+          transform: translateY(-1px);
+          background: var(--color-accent);
+        }
+
+        .confirmation-btn-no {
+          background: var(--color-button-secondary-bg);
+          color: var(--color-text);
+          border: 1px solid var(--color-border);
+        }
+
+        .confirmation-btn-no:hover:not(:disabled) {
+          transform: translateY(-1px);
+          background: var(--color-background);
         }
 
         @media (max-width: 680px) {

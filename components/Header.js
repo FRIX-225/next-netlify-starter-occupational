@@ -7,7 +7,7 @@ export default function Header({ title, subtitle }) {
         <Image src="/comenius-logo.png" width={64} height={64} alt="Comenius University logo" />
         <div>
           <h1>{title}</h1>
-          {subtitle ? <p>{subtitle}</p> : null}
+          {subtitle ? <p>{'Occupational Survey'}</p> : null}
         </div>
       </div>
     </header>
