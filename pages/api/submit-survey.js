@@ -4,7 +4,10 @@ function getRowValues(body) {
   const responses = body.responses || body || {}
   const row = []
 
-  for (let i = 1; i <= 20; i += 1) {
+  // Add timestamp first
+  row.push(new Date().toISOString())
+
+  for (let i = 1; i <= 19; i += 1) {
     const value = responses[`q${i}`]
     if (Array.isArray(value)) {
       row.push(String(value[0] ?? ''))
@@ -15,7 +18,6 @@ function getRowValues(body) {
     }
   }
 
-  row.push(new Date().toISOString())
   return [row]
 }
 
